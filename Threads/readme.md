@@ -1,4 +1,4 @@
-# README - Diretório `Thereads`
+# README - Diretório `Threads`
 
 Este diretório faz parte do repositório de Sistemas Operacionais e contém implementações e exemplos relacionados ao conceito de threads.
 
