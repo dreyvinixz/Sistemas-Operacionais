@@ -1,6 +1,8 @@
 # Sistemas Operacionais 
 
-Este repositório contém materiais, códigos e anotações desenvolvidos durante a disciplina de **Sistemas Operacionais 1**. O objetivo deste trabalho é aprofundar o entendimento sobre os principais conceitos de sistemas operacionais, como gerenciamento de processos, memória, sistemas de arquivos e comunicação entre processos.
+Este repositório contém materiais, códigos e anotações desenvolvidos durante a disciplina de **Sistemas Operacionais 1**. O objetivo deste trabalho é aprofundar o entendimento sobre os principais conceitos de sistemas operacionais, como gerenciamento de processos, memória, sistemas de arquivos e comunicação entre processos.  
+
+Este projeto foi realizado em conjunto com [@liconavila](https://github.com/LinconAvila), [@miguelcasarin](https://github.com/Miguel-casarin) e [@lucasderick](https://github.com/Derick1337).
 
 ## Estrutura do Diretório
 
