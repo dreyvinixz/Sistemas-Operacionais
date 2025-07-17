@@ -13,9 +13,11 @@
 #include <atomic>
 #include <iomanip>
 
-// ===================================
+// --------------------------------
 // Classe ContaCorrente
-// ===================================
+// *atributos: protege o acesso a conta corrente e contam quantos leitores são ativos
+// *metodos: usados para garantir exclusividade, usando metodos para multipla leitura 
+// --------------------------------
 class ContaCorrente {
 private:
     std::string identificador;
@@ -69,9 +71,11 @@ public:
     }
 };
 
-// ===================================
+// -----------------------------------
 // Classe Banco
-// ===================================
+// *Atributos:  armazena todas as contas, protege o mapa de contas, ultiliza contadores seguros
+// *Metodos: carrega/salva as contas, retorna ponteiros e estatisticas
+// -----------------------------------
 class Banco {
 private:
     std::map<std::string, std::unique_ptr<ContaCorrente>> contas;
@@ -157,9 +161,10 @@ public:
     }
 };
 
-// ===================================
+// --------------------------------------
 // Classe Simulador de Operações
-// ===================================
+// *Cria operações necssarias, controle de execução com flag, cada thread simula as operações por vez
+// ----------------------------------------
 class SimuladorOperacoes {
 private:
     Banco& banco;
@@ -283,9 +288,10 @@ public:
     }
 };
 
-// ===================================
+// ----------------------------------
 // Classe principal Sistema Bancário
-// ===================================
+// *inicializa o sistema, e carrega as contas, executa as simulações com diferentes threads
+// ----------------------------------
 class SistemaBancario {
 private:
     std::unique_ptr<Banco> banco;
