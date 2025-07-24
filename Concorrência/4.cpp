@@ -31,14 +31,9 @@
 #include <atomic>            // Para operações atômicas (thread-safe)
 #include <iomanip>           // Para formatação de saída
 
-// ================================================================================================
-// CLASSE CONTA CORRENTE
-// ================================================================================================
-/*
- * Esta classe representa uma conta bancária individual com operações thread-safe.
- * Implementa o padrão Reader-Writer: múltiplas threads podem ler simultaneamente,
- * mas apenas uma pode escrever por vez.
- */
+// ===================================
+// Classe ContaCorrente
+// ===================================
 class ContaCorrente {
 private:
     std::string identificador;              // ID único da conta
@@ -188,13 +183,9 @@ public:
     }
 };
 
-// ================================================================================================
-// CLASSE BANCO
-// ================================================================================================
-/*
- * Gerencia múltiplas contas correntes e fornece operações thread-safe
- * para acessar e modificar a coleção de contas.
- */
+// ===================================
+// Classe Banco
+// ===================================
 class Banco {
 private:
     /*
@@ -355,13 +346,9 @@ public:
     }
 };
 
-// ================================================================================================
-// CLASSE SIMULADOR DE OPERAÇÕES
-// ================================================================================================
-/*
- * Simula operações bancárias concorrentes usando múltiplas threads.
- * Cada thread executa operações aleatórias nas contas.
- */
+// ===================================
+// Classe Simulador de Operações
+// ===================================
 class SimuladorOperacoes {
 private:
     Banco& banco;                                    // Referência ao banco
@@ -562,15 +549,9 @@ public:
     }
 };
 
-// ================================================================================================
-// CLASSE SISTEMA BANCÁRIO (COORDENADOR PRINCIPAL)
-// ================================================================================================
-/*
- * Classe principal que coordena todo o sistema:
- * - Inicialização do banco
- * - Execução de simulações
- * - Gerenciamento de logs
- */
+// ===================================
+// Classe principal Sistema Bancário
+// ===================================
 class SistemaBancario {
 private:
     std::unique_ptr<Banco> banco;                    // Instância do banco
@@ -802,67 +783,5 @@ int main() {
         return 1;  // Código de erro
     }
     
-    return 0;  // Sucesso
+    return 0;
 }
-
-/*
- * ================================================================================================
- * RESUMO DO FUNCIONAMENTO DO SISTEMA
- * ================================================================================================
- * 
- * FLUXO PRINCIPAL:
- * 1. Carrega contas do arquivo "ContaCorrente.txt"
- * 2. Executa simulações com 2, 4, 7, 12 e 13 threads
- * 3. Cada thread executa 50 operações aleatórias
- * 4. Registra resultados em "simulacao_logs.csv"
- * 5. Salva estado final das contas
- * 
- * CONCEITOS DE CONCORRÊNCIA DEMONSTRADOS:
- * 
- * 1. READER-WRITER PATTERN:
- *    - Múltiplas consultas simultâneas (shared_lock)
- *    - Operações de escrita exclusivas (unique_lock)
- *    - Melhora performance permitindo leituras paralelas
- * 
- * 2. OPERAÇÕES ATÔMICAS:
- *    - Contadores thread-safe sem mutex
- *    - Usado para estatísticas e controle de leitores
- *    - Evita overhead de sincronização desnecessária
- * 
- * 3. MUTEX HIERÁRQUICO:
- *    - Banco: protege coleção de contas
- *    - Conta: protege saldo individual
- *    - Logger: protege escrita no arquivo
- * 
- * 4. SIMULAÇÃO REALISTA:
- *    - Sleep simula tempo de processamento
- *    - Operações aleatórias simulam carga real
- *    - Medição de performance e throughput
- * 
- * ANÁLISE DE PERFORMANCE:
- * - O CSV gerado permite análise de como o número de threads afeta:
- *   * Tempo total de execução
- *   * Taxa de sucesso das operações
- *   * Throughput (operações por millisegundo)
- *   * Número de falhas por contenção
- * 
- * ARQUIVOS NECESSÁRIOS:
- * - ContaCorrente.txt: dados iniciais das contas (formato: ID|SALDO)
- * 
- * ARQUIVOS GERADOS:
- * - simulacao_logs.csv: resultados das simulações
- * - ContaCorrente.txt: estado final das contas (atualizado)
- * 
- * EXEMPLO DE LINHA NO CSV:
- * NumThreads,OperacoesPorThread,TotalOperacoes,TempoExecucao_ms,OperacoesSucesso,OperacoesFalhas,TaxaSucesso,Throughput_ops_ms,Timestamp
- * 4,50,200,1250,195,5,97.50,0.1560,2024-01-15 14:30:25
- * 
- * POSSÍVEIS MELHORIAS:
- * 1. Implementar diferentes tipos de conta
- * 2. Adicionar transferências entre contas
- * 3. Implementar níveis de isolamento diferentes
- * 4. Adicionar métricas de latência por operação
- * 5. Implementar balanceamento de carga entre threads
- * 
- * ================================================================================================
- */
