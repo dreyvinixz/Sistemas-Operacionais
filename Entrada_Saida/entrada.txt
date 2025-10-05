@@ -1,0 +1,8 @@
+algoritmo|quantum|politicaMemoria|tamanhoMemoria|tamanhoPagina|percentualAlocacao|numDispositivos  
+idDispositivo|numUsosSimultaneos|tempoOperacao                                                         
+tempoCriacao|PID|tempoExecucao|prioridade|qtdeMemoria|sequenciaPaginas|chanceRequisitarES             
+
+RR|2|FIFO|1024|64|50|1  
+DISK|1|3              
+0|1|5|1|128|1,2,3,4|30   
+2|2|4|2|256|2,3,1|50    
